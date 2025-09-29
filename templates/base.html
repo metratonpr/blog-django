@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog do Senac</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="{% url 'lista_posts'  %}">Blog Senac</a>
+        </h1>
+    </header>
+    <main>
+        {% block content %}
+        {%end block%}
+    </main>
+</body>
+
+</html>
