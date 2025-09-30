@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Minhas postagens</h1>
+
+{% for post in posts %}
+<div>
+    <h2>{{post.titulo}}</h2>
+    <h3>{{post.autor}}</h3>
+    <p>{{post.conteudo}}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
