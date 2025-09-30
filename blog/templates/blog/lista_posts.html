@@ -2,14 +2,33 @@
 
 {% block content %}
 
-<h1>Minhas postagens</h1>
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-extrabold text-slate-800 mb-8 border-b pb-4">Minhas Postagens</h1>
 
-{% for post in posts %}
-<div>
-    <h2><a href="{% url 'detalhes_post' post.pk %}">{{post.titulo}}</a></h2>
-    <p>Por {{post.autor}} em {{post.data_criacao | date:"d/m/Y" }}</p>
-    <p>{{post.conteudo | truncatewords:30 | linebreaks}}</p>
+    <div class="space-y-8">
+        {% for post in posts %}
+        <article class="bg-white shadow-md rounded-2xl p-6 hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-blue-700 hover:underline">
+                <a href="{% url 'detalhes_post' post.pk %}">{{ post.titulo }}</a>
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">
+                Por <span class="font-medium text-slate-700">{{ post.autor }}</span>
+                em {{ post.data_criacao | date:"d/m/Y" }}
+            </p>
+            <p class="text-slate-700 mt-4 leading-relaxed">
+                {{ post.conteudo | truncatewords:30 | linebreaks }}
+            </p>
+            <div class="mt-4">
+                <a href="{% url 'detalhes_post' post.pk %}"
+                   class="inline-block text-sm font-medium text-blue-600 hover:text-blue-800">
+                    Ler mais →
+                </a>
+            </div>
+        </article>
+        {% empty %}
+        <p class="text-slate-600">Ainda não há postagens publicadas.</p>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
 
 {% endblock %}
