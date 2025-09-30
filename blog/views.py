@@ -16,7 +16,7 @@ def detalhes_post(request, pk):
     # novo comentario
     novo_comentario = None
 
-    if request == 'POST':
+    if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             novo_comentario = comment_form.save(commit=False)

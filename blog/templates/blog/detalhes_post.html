@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h1>{{post.titulo}}</h1>
+    <p>Por {{post.autor}} em {{post.data_criacao | date:"d/m/Y" }}</p>
+    <p>{{post.conteudo | linebreaks}}</p>
+</div>
+
+<h3>Comentarios:({{comments.count}})</h3>
+<div>
+    {% for comment in comments %}
+    <h2>{{ comments.autor }}</h2>
+    <p>{{ comment.email}}</p>
+    <p>{{ comment.corpo }}</p>
+    {% empty %}
+    <p>Ainda não há comentários. Seja o primeiro a comentar!</p>
+    {% endfor %}
+</div>
+
+{% if novo_comentario %}
+<h3>Seu comentário foi adicionado!</h3>
+{% else %}
+<h3>Deixe um comentário</h3>
+<form method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <p><button type="submit">Enviar Comentário</button></p>
+</form>
+{% endif %}
+{% endblock%}

@@ -6,9 +6,9 @@
 
 {% for post in posts %}
 <div>
-    <h2>{{post.titulo}}</h2>
-    <h3>{{post.autor}}</h3>
-    <p>{{post.conteudo}}</p>
+    <h2><a href="{% url 'detalhes_post' post.pk %}">{{post.titulo}}</a></h2>
+    <p>Por {{post.autor}} em {{post.data_criacao | date:"d/m/Y" }}</p>
+    <p>{{post.conteudo | truncatewords:30 | linebreaks}}</p>
 </div>
 {% endfor %}
 
